@@ -41,7 +41,7 @@ const Testimonials = () => {
                   <span key={i} className="text-yellow-400 text-xl">★</span>
                 ))}
               </div>
-              <p className="text-neutral-700 mb-6 leading-relaxed italic">"{testimonial.text}"</p>
+              <p className="text-neutral-700 mb-6 leading-relaxed italic">&ldquo;{testimonial.text}&rdquo;</p>
               <div className="border-t border-primary-200 pt-4">
                 <p className="font-bold text-primary-500">{testimonial.name}</p>
                 <p className="text-sm text-neutral-600">{testimonial.role}</p>

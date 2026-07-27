@@ -13,7 +13,7 @@ const Footer = () => {
               <span className="bg-accent-500 text-primary-900 px-2 py-1 rounded font-bold">NAS</span>
             </h3>
             <p className="text-primary-100 mb-4">NAS Global Services memberikan layanan profesional dan terpercaya untuk semua kebutuhan bisnis Anda.</p>
-            <p className="text-primary-100 font-semibold">"Urusan dunia, kita ikhtiarkan bersama."</p>
+            <p className="text-primary-100 font-semibold">&ldquo;Urusan dunia, kita ikhtiarkan bersama.&rdquo;</p>
           </div>
 
           {/* Quick Links */}
@@ -66,7 +66,7 @@ const Footer = () => {
           <p>&copy; {currentYear} NAS Global Services. Hak Cipta Dilindungi.</p>
           <div className="flex gap-6 mt-4 md:mt-0">
             <Link href="#" className="hover:text-accent-500 transition-colors">Kebijakan Privasi</Link>
-            <Link href="#" className="hover:text-accent-500 transition-colors">Syarat & Ketentuan</Link>
+            <Link href="#" className="hover:text-accent-500 transition-colors">Syarat &amp; Ketentuan</Link>
           </div>
         </div>
       </div>
