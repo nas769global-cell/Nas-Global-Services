@@ -1,0 +1,74 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  font-family: 'Inter', system-ui, sans-serif;
+  background-color: #ffffff;
+  color: #1a3a52;
+}
+
+/* Typography */
+h1, h2, h3, h4, h5, h6 {
+  font-family: 'Poppins', system-ui, sans-serif;
+  font-weight: 600;
+  line-height: 1.2;
+}
+
+h1 {
+  font-size: 3rem;
+  @apply text-primary-500;
+}
+
+h2 {
+  font-size: 2.25rem;
+  @apply text-primary-500;
+}
+
+h3 {
+  font-size: 1.875rem;
+  @apply text-primary-500;
+}
+
+p {
+  font-size: 1rem;
+  line-height: 1.6;
+  @apply text-neutral-700;
+}
+
+/* Buttons */
+.btn-primary {
+  @apply bg-primary-500 text-white font-semibold py-3 px-8 rounded-lg hover:bg-primary-600 transition-colors duration-300 inline-block;
+}
+
+.btn-secondary {
+  @apply bg-accent-500 text-primary-900 font-semibold py-3 px-8 rounded-lg hover:bg-accent-600 transition-colors duration-300 inline-block;
+}
+
+.btn-outline {
+  @apply border-2 border-primary-500 text-primary-500 font-semibold py-3 px-8 rounded-lg hover:bg-primary-500 hover:text-white transition-colors duration-300 inline-block;
+}
+
+/* Links */
+a {
+  color: #d4af37;
+  text-decoration: none;
+  transition: color 0.3s ease;
+}
+
+a:hover {
+  color: #c19e2a;
+}
+
+/* Smooth scrolling */
+scroll-behavior: smooth;
