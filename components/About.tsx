@@ -1,1 +1,186 @@
-'use client'\n\nimport { useEffect, useRef, useState } from 'react'\n\nconst About = () => {\n  const [isVisible, setIsVisible] = useState(false)\n  const sectionRef = useRef<HTMLDivElement>(null)\n\n  useEffect(() => {\n    const observer = new IntersectionObserver(\n      ([entry]) => {\n        if (entry.isIntersecting) {\n          setIsVisible(true)\n          observer.unobserve(entry.target)\n        }\n      },\n      { threshold: 0.1 }\n    )\n\n    if (sectionRef.current) {\n      observer.observe(sectionRef.current)\n    }\n\n    return () => {\n      if (sectionRef.current) {\n        observer.unobserve(sectionRef.current)\n      }\n    }\n  }, [])\n\n  const stats = [\n    {\n      icon: '🏛',\n      title: 'Perkhidmatan Profesional',\n      description: 'Tim bersertifikat dan berpengalaman siap melayani Anda',\n    },\n    {\n      icon: '🇲🇾',\n      title: 'Seluruh Malaysia',\n      description: 'Jangkauan layanan di setiap sudut nusantara',\n    },\n    {\n      icon: '⚡',\n      title: 'Respons Pantas',\n      description: 'Penyelesaian cepat tanpa mengorbankan kualitas',\n    },\n    {\n      icon: '🤝',\n      title: 'Khidmat Mesra Pelanggan',\n      description: 'Dukungan penuh untuk kepuasan Anda',\n    },\n  ]\n\n  return (\n    <section\n      ref={sectionRef}\n      className=\"py-20 md:py-28 bg-white relative overflow-hidden\"\n      aria-label=\"Tentang NAS Global Services\"\n    >\n      {/* Decorative background elements */}\n      <div className=\"absolute top-0 right-0 w-96 h-96 bg-gradient-to-br from-[#0B3058] to-[#0B3058] opacity-5 rounded-full -translate-y-1/2 translate-x-1/2\"></div>\n      <div className=\"absolute bottom-0 left-0 w-72 h-72 bg-gradient-to-tr from-[#C4A34A] to-[#C4A34A] opacity-5 rounded-full translate-y-1/2 -translate-x-1/2\"></div>\n\n      <div className=\"container mx-auto px-4 relative z-10\">\n        <div className=\"grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-16 items-center mb-16\">\n          {/* Left Content */}\n          <div\n            className={`transition-all duration-1000 ${\n              isVisible\n                ? 'opacity-100 translate-y-0'\n                : 'opacity-0 translate-y-10'\n            }`}\n          >\n            {/* Badge */}\n            <div className=\"inline-flex items-center gap-2 mb-6\">\n              <div className=\"w-2 h-2 rounded-full bg-[#C4A34A]\"></div>\n              <span className=\"text-sm font-bold tracking-widest text-[#C4A34A] uppercase\">\n                Tentang Kami\n              </span>\n            </div>\n\n            {/* Heading */}\n            <h2 className=\"text-4xl md:text-5xl font-bold mb-6 text-[#0B3058] leading-tight\">\n              NAS GLOBAL\n              <br />\n              SERVICES\n            </h2>\n\n            {/* Description */}\n            <div className=\"space-y-4 text-neutral-700\">\n              <p className=\"text-lg leading-relaxed\">\n                NAS GLOBAL SERVICES menyediakan perkhidmatan profesional dalam\n                <span className=\"font-semibold text-[#0B3058]\">\n                  {' '}Urusan Pusaka, CIDB, Hartanah, Pembinaan\n                </span>\n                {' '}dan\n                <span className=\"font-semibold text-[#0B3058]\">\n                  {' '}Konsultasi\n                </span>\n                {' '}di seluruh Malaysia.\n              </p>\n              <p className=\"text-lg leading-relaxed\">\n                Dengan pengalaman mengurus pelbagai keperluan pelanggan, kami\n                <span className=\"font-semibold text-[#0B3058]\">\n                  {' '}komited memberikan penyelesaian\n                </span>\n                {' '}yang lebih mudah, telus dan tersusun.\n              </p>\n            </div>\n\n            {/* CTA Button */}\n            <div className=\"mt-8 flex gap-4 flex-wrap\">\n              <a\n                href=\"/services\"\n                className=\"inline-flex items-center justify-center px-8 py-3 bg-[#0B3058] text-white font-semibold rounded-lg hover:bg-[#082244] transition-all duration-300 shadow-md hover:shadow-lg\"\n              >\n                Ketahui Selanjutnya\n              </a>\n              <a\n                href=\"https://wa.me/60134556769\"\n                target=\"_blank\"\n                rel=\"noopener noreferrer\"\n                className=\"inline-flex items-center justify-center px-8 py-3 border-2 border-[#C4A34A] text-[#0B3058] font-semibold rounded-lg hover:bg-[#C4A34A] hover:text-white transition-all duration-300\"\n              >\n                Hubungi Kami\n              </a>\n            </div>\n          </div>\n\n          {/* Right Content - Stats Grid */}\n          <div\n            className={`grid grid-cols-1 sm:grid-cols-2 gap-6 transition-all duration-1000 delay-200 ${\n              isVisible\n                ? 'opacity-100 translate-y-0'\n                : 'opacity-0 translate-y-10'\n            }`}\n          >\n            {stats.map((stat, index) => (\n              <div\n                key={index}\n                className=\"group relative bg-white rounded-2xl p-8 shadow-md border border-neutral-100 hover:shadow-xl hover:border-[#C4A34A] transition-all duration-300 hover:-translate-y-1 cursor-pointer overflow-hidden\"\n              >\n                {/* Animated background on hover */}\n                <div className=\"absolute inset-0 bg-gradient-to-br from-[#0B3058] to-[#0B3058] opacity-0 group-hover:opacity-5 transition-opacity duration-300 rounded-2xl\"></div>\n\n                <div className=\"relative z-10\">\n                  {/* Icon */}\n                  <div className=\"text-5xl mb-4 transform group-hover:scale-110 transition-transform duration-300\">\n                    {stat.icon}\n                  </div>\n\n                  {/* Title */}\n                  <h3 className=\"text-lg font-bold text-[#0B3058] mb-2 group-hover:text-[#C4A34A] transition-colors duration-300\">\n                    {stat.title}\n                  </h3>\n\n                  {/* Description */}\n                  <p className=\"text-sm text-neutral-600 leading-relaxed\">\n                    {stat.description}\n                  </p>\n\n                  {/* Decorative bottom line */}\n                  <div className=\"mt-4 h-1 w-12 bg-gradient-to-r from-[#C4A34A] to-transparent rounded-full transform origin-left scale-x-0 group-hover:scale-x-100 transition-transform duration-500\"></div>\n                </div>\n              </div>\n            ))}\n          </div>\n        </div>\n\n        {/* Bottom divider */}\n        <div className=\"mt-16 pt-16 border-t border-neutral-200 flex items-center justify-center\">\n          <div className=\"flex gap-4 text-neutral-400 text-lg\">\n            <span>✓</span>\n            <span>Terpercaya</span>\n            <span className=\"ml-4\">✓</span>\n            <span>Profesional</span>\n            <span className=\"ml-4\">✓</span>\n            <span>Berdedikasi</span>\n          </div>\n        </div>\n      </div>\n    </section>\n  )\n}\n\nexport default About\n
+'use client'
+
+import { useEffect, useRef, useState } from 'react'
+
+const About = () => {
+  const [isVisible, setIsVisible] = useState(false)
+  const sectionRef = useRef<HTMLDivElement>(null)
+
+  useEffect(() => {
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        if (entry.isIntersecting) {
+          setIsVisible(true)
+          observer.unobserve(entry.target)
+        }
+      },
+      { threshold: 0.1 }
+    )
+
+    if (sectionRef.current) {
+      observer.observe(sectionRef.current)
+    }
+
+    return () => {
+      if (sectionRef.current) {
+        observer.unobserve(sectionRef.current)
+      }
+    }
+  }, [])
+
+  const stats = [
+    {
+      icon: '🏛',
+      title: 'Perkhidmatan Profesional',
+      description: 'Tim bersertifikat dan berpengalaman siap melayani Anda',
+    },
+    {
+      icon: '🇲🇾',
+      title: 'Seluruh Malaysia',
+      description: 'Jangkauan layanan di setiap sudut nusantara',
+    },
+    {
+      icon: '⚡',
+      title: 'Respons Pantas',
+      description: 'Penyelesaian cepat tanpa mengorbankan kualitas',
+    },
+    {
+      icon: '🤝',
+      title: 'Khidmat Mesra Pelanggan',
+      description: 'Dukungan penuh untuk kepuasan Anda',
+    },
+  ]
+
+  return (
+    <section
+      ref={sectionRef}
+      className="py-20 md:py-28 bg-white relative overflow-hidden"
+      aria-label="Tentang NAS Global Services"
+    >
+      {/* Decorative background elements */}
+      <div className="absolute top-0 right-0 w-96 h-96 bg-gradient-to-br from-[#0B3058] to-[#0B3058] opacity-5 rounded-full -translate-y-1/2 translate-x-1/2"></div>
+      <div className="absolute bottom-0 left-0 w-72 h-72 bg-gradient-to-tr from-[#C4A34A] to-[#C4A34A] opacity-5 rounded-full translate-y-1/2 -translate-x-1/2"></div>
+
+      <div className="container mx-auto px-4 relative z-10">
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-16 items-center mb-16">
+          {/* Left Content */}
+          <div
+            className={`transition-all duration-1000 ${
+              isVisible
+                ? 'opacity-100 translate-y-0'
+                : 'opacity-0 translate-y-10'
+            }`}
+          >
+            {/* Badge */}
+            <div className="inline-flex items-center gap-2 mb-6">
+              <div className="w-2 h-2 rounded-full bg-[#C4A34A]"></div>
+              <span className="text-sm font-bold tracking-widest text-[#C4A34A] uppercase">
+                Tentang Kami
+              </span>
+            </div>
+
+            {/* Heading */}
+            <h2 className="text-4xl md:text-5xl font-bold mb-6 text-[#0B3058] leading-tight">
+              NAS GLOBAL
+              <br />
+              SERVICES
+            </h2>
+
+            {/* Description */}
+            <div className="space-y-4 text-neutral-700">
+              <p className="text-lg leading-relaxed">
+                NAS GLOBAL SERVICES menyediakan perkhidmatan profesional dalam
+                <span className="font-semibold text-[#0B3058]">
+                  {' '}Urusan Pusaka, CIDB, Hartanah, Pembinaan
+                </span>
+                {' '}dan
+                <span className="font-semibold text-[#0B3058]">
+                  {' '}Konsultasi
+                </span>
+                {' '}di seluruh Malaysia.
+              </p>
+              <p className="text-lg leading-relaxed">
+                Dengan pengalaman mengurus pelbagai keperluan pelanggan, kami
+                <span className="font-semibold text-[#0B3058]">
+                  {' '}komited memberikan penyelesaian
+                </span>
+                {' '}yang lebih mudah, telus dan tersusun.
+              </p>
+            </div>
+
+            {/* CTA Button */}
+            <div className="mt-8 flex gap-4 flex-wrap">
+              <a
+                href="/services"
+                className="inline-flex items-center justify-center px-8 py-3 bg-[#0B3058] text-white font-semibold rounded-lg hover:bg-[#082244] transition-all duration-300 shadow-md hover:shadow-lg"
+              >
+                Ketahui Selanjutnya
+              </a>
+              <a
+                href="https://wa.me/60134556769"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-flex items-center justify-center px-8 py-3 border-2 border-[#C4A34A] text-[#0B3058] font-semibold rounded-lg hover:bg-[#C4A34A] hover:text-white transition-all duration-300"
+              >
+                Hubungi Kami
+              </a>
+            </div>
+          </div>
+
+          {/* Right Content - Stats Grid */}
+          <div
+            className={`grid grid-cols-1 sm:grid-cols-2 gap-6 transition-all duration-1000 delay-200 ${
+              isVisible
+                ? 'opacity-100 translate-y-0'
+                : 'opacity-0 translate-y-10'
+            }`}
+          >
+            {stats.map((stat, index) => (
+              <div
+                key={index}
+                className="group relative bg-white rounded-2xl p-8 shadow-md border border-neutral-100 hover:shadow-xl hover:border-[#C4A34A] transition-all duration-300 hover:-translate-y-1 cursor-pointer overflow-hidden"
+              >
+                {/* Animated background on hover */}
+                <div className="absolute inset-0 bg-gradient-to-br from-[#0B3058] to-[#0B3058] opacity-0 group-hover:opacity-5 transition-opacity duration-300 rounded-2xl"></div>
+
+                <div className="relative z-10">
+                  {/* Icon */}
+                  <div className="text-5xl mb-4 transform group-hover:scale-110 transition-transform duration-300">
+                    {stat.icon}
+                  </div>
+
+                  {/* Title */}
+                  <h3 className="text-lg font-bold text-[#0B3058] mb-2 group-hover:text-[#C4A34A] transition-colors duration-300">
+                    {stat.title}
+                  </h3>
+
+                  {/* Description */}
+                  <p className="text-sm text-neutral-600 leading-relaxed">
+                    {stat.description}
+                  </p>
+
+                  {/* Decorative bottom line */}
+                  <div className="mt-4 h-1 w-12 bg-gradient-to-r from-[#C4A34A] to-transparent rounded-full transform origin-left scale-x-0 group-hover:scale-x-100 transition-transform duration-500"></div>
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
+
+        {/* Bottom divider */}
+        <div className="mt-16 pt-16 border-t border-neutral-200 flex items-center justify-center">
+          <div className="flex gap-4 text-neutral-400 text-lg">
+            <span>✓</span>
+            <span>Terpercaya</span>
+            <span className="ml-4">✓</span>
+            <span>Profesional</span>
+            <span className="ml-4">✓</span>
+            <span>Berdedikasi</span>
+          </div>
+        </div>
+      </div>
+    </section>
+  )
+}
+
+export default About
